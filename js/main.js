@@ -6,7 +6,9 @@ const orderProduct = document.getElementById('order-product');
 const orderParams = new URLSearchParams(location.search);
 const currency = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 });
 
-if (orderProduct && orderParams.get('product') === 'serrado') {
+if (orderProduct && orderParams.get('from') === 'cart') {
+  document.getElementById('order-topic').value = 'product';
+} else if (orderProduct && orderParams.get('product') === 'serrado') {
   orderProduct.value = 'Бразилия Серрадо';
   document.getElementById('order-topic').value = 'product';
 

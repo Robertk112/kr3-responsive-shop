@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
   <script src="js/main.js" defer></script>
+  <script src="js/catalog.bundle.js" defer></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -28,8 +29,6 @@
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="account.html">Личный кабинет</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="cart.html">Корзина</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
           </ul>
         </nav>
       </div>
@@ -45,10 +44,11 @@
     <div class="order-page">
     <section>
       <h1 class="section__title">Оформление заявки</h1>
-      <p>Заполните форму, чтобы оставить заявку на товар или получить консультацию.</p>
+      <p>Учебная форма для заказа или консультации. Данные проверяются в браузере.</p>
 
       <p class="success-message" id="success-message" role="alert" hidden>Данные проверены. Это демонстрационная заявка.</p>
       <p class="catalog-status" id="order-estimate" role="status" hidden></p>
+      <div id="order-cart"></div>
       <form id="order-form" class="order-form order-form--page" action="#" method="post" novalidate>
         <div class="field">
           <label class="order-form__label" for="order-product">Товар</label>

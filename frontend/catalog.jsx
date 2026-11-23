@@ -225,6 +225,29 @@ function Catalog() {
   );
 }
 
+function OrderCartSummary() {
+  const { cart } = useShopState();
+  const products = useProducts();
+  const items = products.filter(({ id }) => cart[id]);
+  const total = items.reduce((sum, { id, price }) => sum + price * cart[id], 0);
+  return (
+    <section className="shop-panel" aria-labelledby="order-cart-title">
+      <h2 id="order-cart-title">Состав заявки</h2>
+      {items.length ? (
+        <>
+          <ul className="order-items">
+            {items.map(({ id, name, price }) => (
+              <li key={id}><span>{name} × {cart[id]}</span><strong>{currency.format(price * cart[id])}</strong></li>
+            ))}
+          </ul>
+          <p>Итого <strong>{currency.format(total)}</strong></p>
+        </>
+      ) : <p>Корзина пуста. Товары можно выбрать в <a href="catalog.html">каталоге</a>.</p>}
+      <a href="cart.html">Вернуться в корзину</a>
+    </section>
+  );
+}
+
 function ProductCartButton() {
   const { cart, setQuantity } = useShopState();
   const [status, setStatus] = useState('');
@@ -246,8 +269,11 @@ for (const [id, Component] of [
   ['catalog-app', Catalog],
   ['account-app', Account],
   ['cart-app', Cart],
-  ['product-cart', ProductCartButton]
+  ['product-cart', ProductCartButton],
+  ['order-cart', OrderCartSummary]
 ]) {
   const container = document.getElementById(id);
-  if (container) createRoot(container).render(<Component />);
+  if (!container) continue;
+  if (id === 'order-cart' && new URLSearchParams(location.search).get('from') !== 'cart') continue;
+  createRoot(container).render(<Component />);
 }

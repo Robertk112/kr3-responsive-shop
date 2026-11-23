@@ -269,3 +269,115 @@ main > .page-inner,
         min-width: 0;
     }
 }
+
+/* Общие компоненты витрины RoastLab. */
+:root {
+    --container-width: 76rem;
+    --color-muted: #68564d;
+    --radius-lg: 1.15rem;
+    --shop-shadow: 0 .45rem 1.5rem rgb(61 36 23 / 9%);
+}
+
+.site-header {
+    z-index: 5;
+    box-shadow: 0 1px 0 var(--color-border);
+}
+
+.site-header__inner > .page-inner {
+    max-width: var(--container-width);
+}
+
+.site-nav__link[aria-current="page"] {
+    background: var(--color-surface-accent);
+    border-radius: var(--radius-md);
+}
+
+.hero {
+    background: linear-gradient(125deg, #f8e6d3, var(--color-surface));
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shop-shadow);
+}
+
+.hero__picture img,
+.contact-photo {
+    display: block;
+    width: 100%;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+}
+
+.contact-photo {
+    aspect-ratio: 16 / 9;
+    margin-top: 1.25rem;
+}
+
+.product-card,
+.contact-panel,
+.shop-panel {
+    box-shadow: var(--shop-shadow);
+}
+
+.page > .section:first-of-type,
+.shop-page {
+    overflow-wrap: anywhere;
+}
+
+.order-page {
+    max-width: 52rem;
+    margin-inline: auto;
+}
+
+.order-items {
+    display: grid;
+    gap: .65rem;
+    padding: 0;
+    list-style: none;
+}
+
+.order-items li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .4rem 1rem;
+    padding-bottom: .65rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cart-checkout {
+    margin-top: 1rem;
+}
+
+@media (max-width: 767px) {
+    .site-header__inner > .page-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .site-nav {
+        grid-column: 1 / -1;
+    }
+
+    .site-nav__list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .site-nav__link {
+        min-height: 44px;
+        align-content: center;
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (min-width: 768px) {
+    .faq-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

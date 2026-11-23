@@ -201,6 +201,7 @@ export function Cart() {
             })}
           </ul>
           <p className="shop-total" role="status">Всего товаров: {quantity}. Итого <strong>{currency.format(total)}</strong></p>
+          <a className="button button--primary cart-checkout" href="order.html?from=cart">Перейти к заявке</a>
         </>
       ) : <p>Корзина пуста. Выбери товары в <a href="catalog.html">каталоге</a>.</p>}
     </section>
