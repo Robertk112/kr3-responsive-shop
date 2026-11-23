@@ -28,6 +28,7 @@ type product struct {
 
 func main() {
 	address := flag.String("addr", "127.0.0.1:8080", "HTTP listen address")
+	accountsPath := flag.String("accounts", ".roastlab/accounts.json", "local account data file")
 	flag.Parse()
 
 	data, err := site.ReadFile("api/products.json")
@@ -39,18 +40,26 @@ func main() {
 		log.Fatalf("read catalog: %v", err)
 	}
 
+	accounts, err := openAccounts(*accountsPath)
+	if err != nil {
+		log.Fatalf("open accounts: %v", err)
+	}
+
 	server := &http.Server{
 		Addr:              *address,
-		Handler:           shopHandler(products),
+		Handler:           http.NewCrossOriginProtection().Handler(shopHandler(products, accounts)),
 		ReadHeaderTimeout: 5 * time.Second,
+		ReadTimeout:       10 * time.Second,
+		WriteTimeout:      15 * time.Second,
 		IdleTimeout:       30 * time.Second,
 	}
 	log.Printf("RoastLab: http://%s", *address)
 	log.Fatal(server.ListenAndServe())
 }
 
-func shopHandler(products []product) http.Handler {
+func shopHandler(products []product, accounts *accountStore) http.Handler {
 	mux := http.NewServeMux()
+	accounts.routes(mux)
 	list := func(w http.ResponseWriter, _ *http.Request) {
 		writeJSON(w, http.StatusOK, products)
 	}

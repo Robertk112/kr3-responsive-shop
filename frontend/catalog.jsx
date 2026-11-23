@@ -1,6 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import snapshot from '../api/products.json';
+import { Account, Cart } from './account.jsx';
+import { currency, quantityLimit, useProducts, useShopState } from './shop-state.js';
 
 const categories = {
   beans: 'Кофе в зёрнах',
@@ -17,19 +18,8 @@ const sorts = {
 };
 
 const emptyFilters = { query: '', sort: 'default', categories: [], min: '', max: '', favorites: false };
-const storageKey = 'roastlab.catalog.favorites.v1';
-const currency = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 });
 const normalize = (text) => text.toLocaleLowerCase('ru').replaceAll('ё', 'е');
 const imageSizes = '(min-width: 1200px) 286px, (min-width: 1024px) 34vw, (min-width: 640px) 47vw, calc(100vw - 64px)';
-
-function readFavorites() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-    return new Set(Array.isArray(saved) ? saved : []);
-  } catch {
-    return new Set();
-  }
-}
 
 function CatalogFilters({ filters, onChange, onReset, favoriteFilter, invalidRange }) {
   function changeCategory(value, checked) {
@@ -93,7 +83,7 @@ function CatalogFilters({ filters, onChange, onReset, favoriteFilter, invalidRan
   );
 }
 
-function ProductCard({ product, favorite, compared, onFavorite, onCompare }) {
+function ProductCard({ product, favorite, compared, onFavorite, onCompare, onAdd }) {
   const { id, name, category, price, description, image, alt, badge, href } = product;
   return (
     <div className="product-column">
@@ -110,6 +100,8 @@ function ProductCard({ product, favorite, compared, onFavorite, onCompare }) {
           <p className="product-card__price">{currency.format(price)}</p>
           <button className="button button--primary" type="button" data-product={name}>Заказать</button>
           <div className="product-tools">
+            <button type="button" className="button button--secondary" data-add-to-cart
+              aria-label={'В корзину: ' + name} onClick={() => onAdd(id)}>В корзину</button>
             <button className="button button--secondary" type="button" data-favorite
               aria-label={'В избранное: ' + name} aria-pressed={favorite} onClick={() => onFavorite(id)}>В избранное</button>
             <button className="button button--secondary" type="button" data-compare
@@ -145,27 +137,13 @@ function ComparisonDialog({ dialogRef, products }) {
 }
 
 function Catalog() {
-  const [products, setProducts] = useState(snapshot);
+  const products = useProducts();
+  const { cart, favorites, toggleFavorite, setQuantity } = useShopState();
   const [filters, setFilters] = useState(emptyFilters);
-  const [favorites, setFavorites] = useState(readFavorites);
   const [comparison, setComparison] = useState([]);
   const [announcement, setAnnouncement] = useState('');
   const comparisonDialog = useRef(null);
   const favoriteFilter = useRef(null);
-
-  useEffect(() => {
-    if (location.protocol === 'file:') return;
-    const controller = new AbortController();
-    fetch('api/products.json', { signal: controller.signal })
-      .then((response) => response.ok ? response.json() : null)
-      .then((data) => {
-        if (Array.isArray(data)) setProducts(data);
-      })
-      .catch(() => {
-        // Каталог доступен из локального снимка при отсутствии связи.
-      });
-    return () => controller.abort();
-  }, []);
 
   const min = filters.min === '' ? 0 : Number(filters.min);
   const max = filters.max === '' ? Infinity : Number(filters.max);
@@ -181,19 +159,22 @@ function Catalog() {
   const sort = sorts[filters.sort];
   if (sort) shown.sort(sort);
 
-  function toggleFavorite(id) {
-    const next = new Set(favorites);
-    const removing = next.delete(id);
-    if (!removing) next.add(id);
-    let text = removing ? 'Товар убран из избранного.' : 'Товар добавлен в избранное.';
-    try {
-      localStorage.setItem(storageKey, JSON.stringify([...next]));
-    } catch {
-      text += ' Изменение сохранено только в этой вкладке.';
+  function changeFavorite(id) {
+    const { added, saved } = toggleFavorite(id);
+    if (!added && filters.favorites) favoriteFilter.current.focus();
+    const status = added ? 'Товар добавлен в избранное.' : 'Товар убран из избранного.';
+    setAnnouncement(status + (saved ? '' : ' Изменение сохранено только в этой вкладке.'));
+  }
+
+  function addToCart(id) {
+    const amount = cart[id] || 0;
+    if (amount === quantityLimit) {
+      setAnnouncement('Достигнут лимит количества для этого товара.');
+      return;
     }
-    if (removing && filters.favorites) favoriteFilter.current.focus();
-    setFavorites(next);
-    setAnnouncement(text);
+    const saved = setQuantity(id, amount + 1);
+    setAnnouncement('Товар добавлен в корзину. Количество: ' + (amount + 1) + '.'
+      + (saved ? '' : ' Изменение сохранено только в этой вкладке.'));
   }
 
   function toggleComparison(id) {
@@ -233,7 +214,7 @@ function Catalog() {
             {shown.map((product) => (
               <ProductCard key={product.id} product={product}
                 favorite={favorites.has(product.id)} compared={comparison.includes(product.id)}
-                onFavorite={toggleFavorite} onCompare={toggleComparison} />
+                onFavorite={changeFavorite} onCompare={toggleComparison} onAdd={addToCart} />
             ))}
           </div>
         </section>
@@ -244,4 +225,29 @@ function Catalog() {
   );
 }
 
-createRoot(document.getElementById('catalog-app')).render(<Catalog />);
+function ProductCartButton() {
+  const { cart, setQuantity } = useShopState();
+  const [status, setStatus] = useState('');
+  const amount = cart['item-1'] || 0;
+  return (
+    <>
+      <button className="button button--secondary" type="button" disabled={amount >= quantityLimit}
+        onClick={() => {
+          const saved = setQuantity('item-1', amount + 1);
+          setStatus('Товар добавлен в корзину. Количество: ' + (amount + 1) + '.'
+            + (saved ? '' : ' Изменение сохранено только в этой вкладке.'));
+        }}>В корзину</button>
+      <span className="shop-announcement" role="status">{status}</span>
+    </>
+  );
+}
+
+for (const [id, Component] of [
+  ['catalog-app', Catalog],
+  ['account-app', Account],
+  ['cart-app', Cart],
+  ['product-cart', ProductCartButton]
+]) {
+  const container = document.getElementById(id);
+  if (container) createRoot(container).render(<Component />);
+}
