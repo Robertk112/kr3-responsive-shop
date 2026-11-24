@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Товары, количество и сумма покупки в RoastLab.">
+    <title>Корзина — RoastLab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/catalog.bundle.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width=%2740%27 height=%2740%27 rx=%2710%27 fill=%27%23422b22%27/%3E%3Cpath fill='%23f7e6cf' d='M28 10c4.8 3.8 3.9 11.8-.9 17.2-4.9 5.3-11.9 6.4-15.6 2.7-4.2-4-3-11.1 1.7-16.2C18 8.5 24.5 7.2 28 10Z'/%3E%3Cpath fill='none' stroke='%23422b22' stroke-width='2' stroke-linecap='round' d='M12 30c2.4-4.1 6.9-4.3 8.5-9.6 1.4-4.6 2.7-7.9 7.7-10.2'/%3E%3C/svg%3E">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+  <p class="site-announcement">
+      <a href="catalog.html">Доставка по Москве — ориентировочно 1–3 дня · В каталог <span aria-hidden="true">→</span></a>
+  </p>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="page-inner">
+        <a class="site-header__logo" href="index.html">RoastLab</a>
+        <button class="button button--secondary site-nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Меню</button>
+        <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+          <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="account.html">Личный кабинет</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" aria-current="page" href="cart.html">Корзина</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+    <main id="main-content" tabindex="-1" class="page shop-page">
+      <nav class="breadcrumbs" aria-label="Хлебные крошки">
+        <ol class="breadcrumbs__list">
+          <li><a class="breadcrumbs__link" href="index.html">Главная</a></li>
+          <li><span class="breadcrumbs__current" aria-current="page">Корзина</span></li>
+        </ol>
+      </nav>
+      <div class="page-intro">
+        <h1>Корзина</h1>
+        <p>Проверьте товары и количество перед оформлением заявки.</p>
+      </div>
+      <div id="cart-app"></div>
+      <noscript>Включите JavaScript, чтобы пользоваться этой страницей.</noscript>
+    </main>
+
+    <footer class="site-footer">
+        <div class="page-inner">
+            <div class="site-footer__grid">
+                <div class="site-footer__brand">
+                    <a class="site-footer__logo" href="index.html">RoastLab</a>
+                    <p>Кофе в зёрнах и оборудование для приготовления кофе дома и в офисе.</p>
+                </div>
+                <nav aria-label="Навигация в подвале">
+                    <h2 class="site-footer__heading">Навигация</h2>
+                    <ul class="site-footer__links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="index.html#faq">Доставка и оплата</a></li>
+                        <li><a href="index.html#stores">Магазины на карте</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h2 class="site-footer__heading">На связи</h2>
+                    <ul class="site-footer__links">
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="contacts.html#feedback">Написать нам</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>&copy; 2026 RoastLab</p>
+                <p>Москва, Россия</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- НОВОЕ УЛУЧШЕННОЕ МОДАЛЬНОЕ ОКНО              -->
+    <!-- ========================================== -->
+
+    <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+          <div class="order-dialog__header">
+            <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+            <button type="button" class="order-dialog__close" data-close-dialog aria-label="Закрыть">×</button>
+          </div>
+          <div class="order-dialog__body">
+            <form class="order-form" id="order-form" action="#" method="post" novalidate>
+
+                <input id="selected-product" name="selected-product" type="hidden">
+                <section class="order-summary" aria-labelledby="order-summary-title">
+                    <h3 id="order-summary-title">Состав заказа</h3>
+                    <ul class="order-summary__items" id="order-summary-items"></ul>
+                    <ul class="order-summary__items" id="order-summary-extra" hidden></ul>
+                    <button class="order-summary__more" type="button" id="order-summary-more"
+                        aria-expanded="false" aria-controls="order-summary-extra" hidden></button>
+                    <div class="order-summary__total">
+                        <span>Итого</span>
+                        <strong id="order-summary-total"></strong>
+                    </div>
+                </section>
+
+                <!-- Группа: контактные данные -->
+                <fieldset class="field">
+                    <legend class="field-title">Контактные данные</legend>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-name">
+                            Имя <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input class="order-form__input"
+                                   id="order-name" name="name" type="text"
+                                   placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+                        <small class="order-form__hint">Как к вам обращаться</small>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-email">
+                            E-mail <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input class="order-form__input"
+                                   id="order-email" name="email" type="email"
+                                   placeholder="example@mail.ru" autocomplete="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-phone">
+                            Телефон <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <div class="phone-field">
+          <span class="phone-field__icon" aria-hidden="true">☎</span>
+          <input class="order-form__input"
+                                   id="order-phone" name="phone" type="tel" inputmode="tel"
+                                   placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required aria-describedby="order-phone-hint">
+        </div>
+                        <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+                    </div>
+                </fieldset>
+
+                <!-- Группа: способ связи -->
+                <fieldset class="field">
+                    <legend class="field-title">Удобный способ связи</legend>
+                    <div class="order-form__options">
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="call" checked> Звонок
+                        </label>
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="email"> E-mail
+                        </label>
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="messenger"> Мессенджер
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Группа: детали заявки -->
+                <fieldset class="field">
+                    <legend class="field-title">Детали заявки</legend>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-date">Желаемая дата связи</label>
+                        <input class="order-form__input" id="order-date" name="date" type="date">
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-topic">
+                            Тема заявки <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <select class="order-form__select" id="order-topic" name="topic" required>
+                            <option value="">Выберите тему</option>
+                            <option value="product">Заказ товара</option>
+                            <option value="consultation">Помощь с выбором кофе</option>
+                            <option value="delivery">Доставка</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-comment">Комментарий</label>
+                        <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4" placeholder="Укажите количество, способ заваривания или вопрос о доставке (например, удобное время для звонка)"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- Согласие -->
+                <div class="order-form__agreement">
+          <input class="choice-input" id="order-agreement" name="agreement" type="checkbox" required>
+          <label class="choice-label" for="order-agreement">
+                        <span>Я согласен на обработку данных, указанных в форме.</span>
+                    </label>
+        </div>
+
+            </form>
+          </div>
+          <div class="order-dialog__actions">
+              <button class="button button--secondary" type="button" data-close-dialog>Отмена</button>
+              <button class="button button--primary" type="submit" form="order-form">Проверить заявку</button>
+          </div>
+    </dialog>
+
+    <!-- Сообщение об успехе -->
+    <p class="success-message" id="success-message" role="alert" hidden>Данные заявки проверены.</p>
+
+    <!-- Фиксированная кнопка "Наверх" -->
+    <a href="#top" class="to-top" aria-label="Вернуться наверх" title="Наверх">↑</a>
+
+</body>
+</html>

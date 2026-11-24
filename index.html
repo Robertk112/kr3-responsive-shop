@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RoastLab: популярные товары, преимущества, отзывы клиентов.">
+    <title>RoastLab</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="js/main.js" defer></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width=%2740%27 height=%2740%27 rx=%2710%27 fill=%27%23422b22%27/%3E%3Cpath fill='%23f7e6cf' d='M28 10c4.8 3.8 3.9 11.8-.9 17.2-4.9 5.3-11.9 6.4-15.6 2.7-4.2-4-3-11.1 1.7-16.2C18 8.5 24.5 7.2 28 10Z'/%3E%3Cpath fill='none' stroke='%23422b22' stroke-width='2' stroke-linecap='round' d='M12 30c2.4-4.1 6.9-4.3 8.5-9.6 1.4-4.6 2.7-7.9 7.7-10.2'/%3E%3C/svg%3E">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+  <p class="site-announcement">
+      <a href="catalog.html">Доставка по Москве — ориентировочно 1–3 дня · В каталог <span aria-hidden="true">→</span></a>
+  </p>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="page-inner">
+        <a class="site-header__logo" href="index.html">RoastLab</a>
+        <button class="button button--secondary site-nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" hidden>Меню</button>
+        <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+          <ul class="site-nav__list">
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" aria-current="page" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="account.html">Личный кабинет</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="cart.html">Корзина</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+    <main id="main-content" tabindex="-1">
+  <section class="hero">
+    <div class="page-inner">
+      <div class="hero__layout">
+        <div class="hero__copy">
+          <h1 class="hero__title">Хороший день <span>начинается с кофе.</span></h1>
+          <p class="hero__text">Зёрна, молотый кофе и всё для домашнего заваривания. Выберите свою обжарку или соберите набор с нуля.</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="catalog.html">Выбрать кофе <span aria-hidden="true">↗</span></a>
+            <a class="hero__stores" href="#stores">Магазины в Москве</a>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <picture class="hero__picture">
+            <source type="image/webp" srcset="images/roast-8-252.webp 252w, images/roast-8.webp 504w" sizes="(min-width: 1100px) 505px, (min-width: 768px) 46vw, calc(100vw - 64px)">
+            <img src="images/roast-8.jpg" srcset="images/roast-8-252.jpg 252w, images/roast-8.jpg 504w" sizes="(min-width: 1100px) 505px, (min-width: 768px) 46vw, calc(100vw - 64px)" alt="Чашка свежезаваренного кофе" width="504" height="333">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="page-inner">
+
+        <section class="section" id="advantages" tabindex="-1" aria-labelledby="advantages-title">
+            <h2 class="section__title" id="advantages-title">Почему RoastLab</h2>
+            <ul class="advantages-list">
+                <li class="advantages-list__item">
+                    <svg class="advantages-list__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 8h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM17 9h2a2 2 0 0 1 0 4h-2M3 21h16M8 5V3m5 2V3"/>
+                    </svg>
+                    <div>
+                        <h3>Под ваш способ заваривания</h3>
+                        <p>Кофе для фильтра, эспрессо и гейзерной кофеварки.</p>
+                    </div>
+                </li>
+                <li class="advantages-list__item">
+                    <svg class="advantages-list__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <ellipse cx="12" cy="12" rx="6" ry="9" transform="rotate(35 12 12)"/>
+                        <path d="M16.5 5c1 5-6 7-5 10 .4 1.3.2 2.7-.5 4"/>
+                    </svg>
+                    <div>
+                        <h3>Зёрна и молотый кофе</h3>
+                        <p>Выберите зёрна для домашней кофемолки или кофе в готовом помоле.</p>
+                    </div>
+                </li>
+                <li class="advantages-list__item">
+                    <svg class="advantages-list__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 6h13l-2 5H6zM10 3v3m2-3v3M6 11l-2 8h13l-2-8M17 7h3a1 1 0 0 1 1 1v6h-3M4 19v2h13v-2"/>
+                    </svg>
+                    <div>
+                        <h3>Оборудование для дома</h3>
+                        <p>Кофеварки, френч-прессы и аксессуары для домашнего заваривания.</p>
+                    </div>
+                </li>
+                <li class="advantages-list__item">
+                    <svg class="advantages-list__icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H10l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM7 9h10M7 13h6"/>
+                    </svg>
+                    <div>
+                        <h3>Помощь с выбором</h3>
+                        <p>Подскажем, какая обжарка подойдёт под ваш вкус.</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section" id="popular" tabindex="-1">
+            <div class="section-heading">
+                <h2 class="section__title">Популярные товары</h2>
+                <a href="catalog.html">Весь каталог <span aria-hidden="true">↗</span></a>
+            </div>
+
+            <div class="products-grid">
+
+                <div class="product-column">
+  <article class="product-card" data-category="beans" data-price="1000" id="item-1">
+    <img class="product-card__image" src="images/roast-1.jpg" srcset="images/roast-1-252.jpg 252w, images/roast-1.jpg 504w" sizes="(min-width: 1200px) 360px, (min-width: 1024px) 32vw, (min-width: 640px) 47vw, calc(100vw - 64px)" alt="Бразилия Серрадо" width="504" height="333" loading="lazy">
+    <div class="product-card__body">
+<h3 class="product-card__title"><a href="product.html">Бразилия Серрадо</a></h3>
+    <p class="product-card__description">Орехи, какао и мягкая сладость. Арабика в зёрнах, 250 г.</p>
+    <p class="product-card__price">1 000 ₽</p>
+
+    <button class="button button--primary" type="button" data-product="Бразилия Серрадо">Заказать</button>
+    </div>
+  </article>
+</div>
+
+                <div class="product-column">
+  <article class="product-card" data-category="ground" data-price="850" id="item-2">
+    <img class="product-card__image" src="images/roast-2.jpg" srcset="images/roast-2-252.jpg 252w, images/roast-2.jpg 504w" sizes="(min-width: 1200px) 360px, (min-width: 1024px) 32vw, (min-width: 640px) 47vw, calc(100vw - 64px)" alt="Эспрессо Бленд" width="504" height="333" loading="lazy">
+    <div class="product-card__body">
+<h3 class="product-card__title">Эспрессо Бленд</h3>
+    <p class="product-card__description">Молотый кофе для гейзерной кофеварки, 250 г.</p>
+    <p class="product-card__price">850 ₽</p>
+
+    <button class="button button--primary" type="button" data-product="Эспрессо Бленд">Заказать</button>
+    </div>
+  </article>
+</div>
+
+                <div class="product-column">
+  <article class="product-card" data-category="makers" data-price="2490" id="item-3">
+    <img class="product-card__image" src="images/roast-3.jpg" srcset="images/roast-3-252.jpg 252w, images/roast-3.jpg 504w" sizes="(min-width: 1200px) 360px, (min-width: 1024px) 32vw, (min-width: 640px) 47vw, calc(100vw - 64px)" alt="Гейзерная кофеварка Moka" width="504" height="333" loading="lazy">
+    <div class="product-card__body">
+<h3 class="product-card__title">Гейзерная кофеварка Moka</h3>
+    <p class="product-card__description">Алюминиевая кофеварка на 3 порции.</p>
+    <p class="product-card__price">2 490 ₽</p>
+
+    <button class="button button--primary" type="button" data-product="Гейзерная кофеварка Moka">Заказать</button>
+    </div>
+  </article>
+</div>
+
+            </div>
+        </section>
+
+        <!-- БЛОК: Отзывы -->
+        <section class="section" id="reviews">
+            <h2 class="section__title">Отзывы</h2>
+            <p></p>
+
+            <div class="reviews-list">
+
+                <div>
+<article class="review-card">
+                    <div class="review-card__header">
+                        <span class="review-card__author">Анна Смирнова</span>
+                        <span class="review-card__date">12 марта 2026</span>
+                    </div>
+                    <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+                    <p class="review-card__text">У Серрадо приятный ореховый вкус. Завариваю в гейзерной кофеварке.</p>
+                </article>
+</div>
+
+                <div>
+<article class="review-card">
+                    <div class="review-card__header">
+                        <span class="review-card__author">Дмитрий Козлов</span>
+                        <span class="review-card__date">05 марта 2026</span>
+                    </div>
+                    <div class="stars" aria-label="Оценка 4 из 5">★★★★☆</div>
+                    <p class="review-card__text">Кофемолка легко настраивается. Нашёл подходящий помол для фильтра.</p>
+                </article>
+</div>
+
+                <div>
+<article class="review-card">
+                    <div class="review-card__header">
+                        <span class="review-card__author">Елена Иванова</span>
+                        <span class="review-card__date">28 февраля 2026</span>
+                    </div>
+                    <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+                    <p class="review-card__text">Подобрала более светлую обжарку для воронки. В чашке хорошо слышен цитрус.</p>
+                </article>
+</div>
+
+                <div>
+<article class="review-card">
+                    <div class="review-card__header">
+                        <span class="review-card__author">Максим Петров</span>
+                        <span class="review-card__date">20 февраля 2026</span>
+                    </div>
+                    <div class="stars" aria-label="Оценка 5 из 5">★★★★★</div>
+                    <p class="review-card__text">Френч-пресса хватает на две кружки. Колбу легко промыть.</p>
+                </article>
+</div>
+
+                <div>
+<article class="review-card">
+                    <div class="review-card__header">
+                        <span class="review-card__author">Ольга Соколова</span>
+                        <span class="review-card__date">14 февраля 2026</span>
+                    </div>
+                    <div class="stars" aria-label="Оценка 4 из 5">★★★★☆</div>
+                    <p class="review-card__text">Молотый бленд понравился с молоком. В следующий раз попробую декаф.</p>
+                </article>
+</div>
+
+            </div>
+        </section>
+
+        <!-- БЛОК: Часто задаваемые вопросы (FAQ) -->
+        <section class="section" id="faq">
+            <h2 class="section__title">Часто задаваемые вопросы</h2>
+            <p>Собрали ответы на самые популярные вопросы наших покупателей.</p>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary class="faq-item__question">Как быстро осуществляется доставка?</summary>
+                    <div class="faq-item__answer">Ориентировочный срок доставки по Москве — 1–3 дня. Точную дату можно уточнить при оформлении заказа.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-item__question">Можно ли вернуть товар, если он не подошёл?</summary>
+                    <div class="faq-item__answer">Если товар не подошёл, напишите нам через <a href="contacts.html">страницу контактов</a> и укажите номер заказа. Подскажем, как оформить возврат или обмен.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-item__question">Есть ли гарантия на оборудование?</summary>
+                    <div class="faq-item__answer">Срок и условия гарантии зависят от модели. Перед покупкой уточните их через <a href="contacts.html">страницу контактов</a>, указав название модели.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-item__question">Как оплатить заказ?</summary>
+                    <div class="faq-item__answer">Чтобы уточнить доступные способы оплаты, свяжитесь с нами через <a href="contacts.html">страницу контактов</a>.</div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-item__question">Работаете ли вы с юридическими лицами?</summary>
+                    <div class="faq-item__answer">По оптовым заказам для компаний напишите нам через <a href="contacts.html">страницу контактов</a>. Укажите название организации, нужные позиции и количество, чтобы обсудить условия поставки.</div>
+                </details>
+            </div>
+        </section>
+
+      </div>
+        <section class="section" id="stores" aria-labelledby="stores-title">
+            <h2 class="section__title" id="stores-title">Мы здесь</h2>
+            <p class="stores-map__intro">Магазины RoastLab в Москве. Выберите точку под картой, чтобы приблизить её.</p>
+            <div class="stores-map">
+                <iframe class="stores-map__frame" name="stores-map" title="Яндекс Карта с магазинами RoastLab в Москве"
+                    src="https://yandex.ru/map-widget/v1/?ll=37.603,55.749&amp;z=10&amp;l=map&amp;pt=37.606,55.765~37.542,55.744~37.669,55.706"
+                    loading="lazy" allowfullscreen></iframe>
+                <ul class="stores-map__locations" aria-label="Точки на карте">
+                    <li><a href="https://yandex.ru/map-widget/v1/?ll=37.606,55.765&amp;z=16&amp;l=map&amp;pt=37.606,55.765" target="stores-map">м. Пушкинская</a></li>
+                    <li><a href="https://yandex.ru/map-widget/v1/?ll=37.542,55.744&amp;z=16&amp;l=map&amp;pt=37.542,55.744" target="stores-map">м. Деловой центр</a></li>
+                    <li><a href="https://yandex.ru/map-widget/v1/?ll=37.669,55.706&amp;z=16&amp;l=map&amp;pt=37.669,55.706" target="stores-map">м. Автозаводская</a></li>
+                    <li><a href="https://yandex.ru/map-widget/v1/?ll=37.603,55.749&amp;z=10&amp;l=map&amp;pt=37.606,55.765~37.542,55.744~37.669,55.706" target="stores-map">Все точки</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contacts">
+        <div class="page-inner">
+            <div class="site-footer__grid">
+                <div class="site-footer__brand">
+                    <a class="site-footer__logo" href="index.html">RoastLab</a>
+                    <p>Кофе в зёрнах и оборудование для приготовления кофе дома и в офисе.</p>
+                </div>
+                <nav aria-label="Навигация в подвале">
+                    <h2 class="site-footer__heading">Навигация</h2>
+                    <ul class="site-footer__links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="catalog.html">Каталог</a></li>
+                        <li><a href="index.html#faq">Доставка и оплата</a></li>
+                        <li><a href="index.html#stores">Магазины на карте</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h2 class="site-footer__heading">На связи</h2>
+                    <ul class="site-footer__links">
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="contacts.html#feedback">Написать нам</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <p>&copy; 2026 RoastLab</p>
+                <p>Москва, Россия</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- СУПЕР-УЛУЧШЕННОЕ МОДАЛЬНОЕ ОКНО             -->
+    <!-- ========================================== -->
+    <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
+          <div class="order-dialog__header">
+            <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
+            <button type="button" class="order-dialog__close" data-close-dialog aria-label="Закрыть">×</button>
+          </div>
+          <div class="order-dialog__body">
+            <form class="order-form" id="order-form" action="#" method="post" novalidate>
+
+                <input id="selected-product" name="selected-product" type="hidden"><p>Товар: <strong id="selected-product-name"></strong></p>
+
+                <!-- Динамический блок: Выбранный товар -->
+
+                <!-- Группа: контактные данные -->
+                <fieldset class="field">
+                    <legend class="field-title">Контактные данные</legend>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-name">
+                            Имя <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input class="order-form__input"
+                                   id="order-name" name="name" type="text"
+                                   placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+                        <small class="order-form__hint">Как к вам обращаться</small>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-email">
+                            E-mail <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <input class="order-form__input"
+                                   id="order-email" name="email" type="email"
+                                   placeholder="example@mail.ru" autocomplete="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-phone">
+                            Телефон <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <div class="phone-field">
+          <span class="phone-field__icon" aria-hidden="true">☎</span>
+          <input class="order-form__input"
+                                   id="order-phone" name="phone" type="tel" inputmode="tel"
+                                   placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" required aria-describedby="order-phone-hint">
+        </div>
+                        <small class="order-form__hint" id="order-phone-hint">Формат: +7 (900) 000-00-00</small>
+                    </div>
+                </fieldset>
+
+                <!-- Группа: способ связи (НОВОЕ) -->
+                <fieldset class="field">
+                    <legend class="field-title">Удобный способ связи</legend>
+                    <div class="order-form__options">
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="call" checked> Звонок
+                        </label>
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="email"> E-mail
+                        </label>
+                        <label class="choice-label">
+                            <input class="choice-input" type="radio" name="contact_method" value="messenger"> Мессенджер
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- Группа: детали заявки -->
+                <fieldset class="field">
+                    <legend class="field-title">Детали заявки</legend>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-date">Желаемая дата связи</label>
+                        <input class="order-form__input" id="order-date" name="date" type="date">
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-topic">
+                            Тема заявки <span class="required" aria-hidden="true">*</span>
+                        </label>
+                        <select class="order-form__select" id="order-topic" name="topic" required>
+                            <option value="">Выберите тему</option>
+                            <option value="product">Заказ товара</option>
+                            <option value="consultation">Помощь с выбором кофе</option>
+                            <option value="delivery">Доставка</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="order-form__label" for="order-comment">Комментарий</label>
+                        <textarea class="order-form__textarea" id="order-comment" name="comment" rows="4" placeholder="Укажите количество, способ заваривания или вопрос о доставке (например, удобное время для звонка)"></textarea>
+                    </div>
+                </fieldset>
+
+                <!-- Согласие -->
+                <div class="order-form__agreement">
+          <input class="choice-input" id="order-agreement" name="agreement" type="checkbox" required>
+          <label class="choice-label" for="order-agreement">
+                        <span>Я согласен на обработку данных, указанных в форме.</span>
+                    </label>
+        </div>
+
+            </form>
+          </div>
+          <div class="order-dialog__actions">
+              <button class="button button--secondary" type="button" data-close-dialog>Отмена</button>
+              <button class="button button--primary" type="submit" form="order-form">Проверить заявку</button>
+          </div>
+    </dialog>
+
+    <!-- Сообщение об успехе -->
+    <p class="success-message" id="success-message" role="alert" hidden>Данные заявки проверены.</p>
+
+    <!-- Фиксированная кнопка "Наверх" -->
+    <a href="#top" class="to-top" aria-label="Вернуться наверх" title="Наверх">↑</a>
+
+</body>
+</html>
